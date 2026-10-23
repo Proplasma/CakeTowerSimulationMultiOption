@@ -40,12 +40,20 @@ Access the in-game settings modal at any time via the **Settings (Gear Icon)** b
 
 4. **Custom Spawn Height (Elevation Offset)**:
    - Configure how high new cakes fly above the current tower top:
-   - Slider & quick presets: 0.25x (Very Low / Near Top), 0.40x (Low), 0.55x (Standard Default), 0.85x (High), 1.25x (Very High / Distant).
+   - Slider (0.20x to 3.50x) & quick presets: 0.25x (Very Low), 0.55x (Standard), 1.00x (High), 1.80x (Very High), 2.50x (Super High), 3.50x (Sky-high).
 
-5. **Balloon Cake Toggle**:
+5. **Adjustable Perfect Drop Tolerance**:
+   - Customize how forgiving the game is when calculating a "Perfect" drop:
+   - Slider (0.5x to 5.0x) & quick presets: 0.5x (Strict/Hardcore), 1.0x (Standard 3% margin), 1.8x (Forgiving), 2.8x (Generous), 4.5x (Ultra Easy Perfect).
+
+6. **Custom Solid Background & Denim Blue Jeans Mode**:
+   - Toggle the striped wallpaper background on or off.
+   - When off, play on a solid high-contrast background: defaults to **Denim Blue Jeans (`#2b4c7e`)**, with quick swatches (Navy, OLED Black, Slate Charcoal, Cream, Pure White) or a custom color picker. Perfect for visual clarity and computer-vision bot detection.
+
+7. **Balloon Cake Toggle**:
    Toggle swinging pendulum balloon cakes (appearing from tier 40+) on or off.
 
-6. **Persistent Preferences**:
+8. **Persistent Preferences**:
    All customized settings are automatically saved to `localStorage` for future sessions.
 
 
@@ -92,12 +100,20 @@ Bạn có thể mở bảng cài đặt bất kỳ lúc nào bằng nút **Cài 
    - Tự cắt phần bị thả lệch (Cổ điển): Phần bánh thừa ngoài mép sẽ bị xén đứt rơi rụng. Bánh trên đỉnh tháp hẹp dần theo từng tầng (nếu đạt chuỗi Perfect 3 lần liên tiếp bánh sẽ nở to trở lại).
    - Giữ nguyên kích thước 100% (Thoải mái): Bánh không bao giờ bị cắt xén hay thu nhỏ; luôn giữ nguyên kích thước ban đầu giúp bạn thoải mái xây tháp bánh khổng lồ.
 
-4. **Tuỳ Chỉnh Vị Trí / Độ Cao Xuất Hiện Của Bánh Mới**:
+4. **Tuỳ Chỉnh Vị Trí / Độ Cao Xuất Hiện Của Bánh Mới (Kéo Cao Tối Đa)**:
    - Tự do tinh chỉnh khoảng cách bánh bay ngang cao lên hoặc thấp xuống so với đỉnh tháp bánh hiện tại.
-   - Hỗ trợ thanh trượt linh hoạt kèm các nút bấm nhanh: 0.25x (Rất thấp / Sát đỉnh tháp), 0.40x (Thấp), 0.55x (Chuẩn gốc), 0.85x (Cao), hoặc 1.25x (Rất cao).
+   - Hỗ trợ thanh trượt linh hoạt mở rộng từ `0.20x` đến `3.50x` kèm các nút bấm nhanh: `0.25x` (Rất thấp), `0.55x` (Chuẩn gốc), `1.00x` (Cao), `1.80x` (Rất cao), `2.50x` (Siêu cao), hoặc `3.50x` (Tít trên trời).
 
-5. **Bóng Bay Đung Đưa**:
+5. **Tuỳ Chỉnh Độ Dung Sai Thả Bánh Perfect**:
+   - Tự do tăng hoặc giảm độ lệch chấp nhận được khi thả bánh để đạt chuỗi Perfect:
+   - Thanh trượt từ `0.5x` đến `5.0x` kèm các mức: `0.5x` (Khắt khe / Hardcore), `1.0x` (Chuẩn gốc), `1.8x` (Dễ hơn), `2.8x` (Rất dễ), hoặc `4.5x` (Siêu dễ Perfect - tha hồ giữ combo).
+
+6. **Bật / Tắt Background & Chế Độ Màu Xanh Quần Jean**:
+   - Cho phép bật hoặc tắt hình nền sọc giấy dán tường mặc định.
+   - Khi tắt, game sẽ chuyển sang nền đơn sắc với màu mặc định là **Màu Xanh Quần Jean Denim (`#2b4c7e`)**, kèm bảng chọn mã màu tự do và các ô chọn màu nhanh (Xanh Navy, Đen OLED, Xám than, Trắng tinh, Kem sữa). Cực kỳ hữu ích cho việc quan sát tương phản cao và hỗ trợ bot thị giác máy tính nhận diện bánh dễ dàng 100%.
+
+7. **Bóng Bay Đung Đưa**:
    Có thể bật hoặc tắt tính năng bánh treo khinh khí cầu đung đưa xuất hiện từ tầng 40 trở lên.
 
-6. **Tự Động Lưu Cấu Hình**:
+8. **Tự Động Lưu Cấu Hình**:
    Toàn bộ cấu hình cài đặt sẽ tự động lưu vào `localStorage` của trình duyệt và áp dụng cho các lần chơi tiếp theo.

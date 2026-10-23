@@ -343,6 +343,42 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
     border-radius: 999px;
     border: .12rem solid var(--ink);
   }
+  .color-picker-row {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    margin-top: .4rem;
+  }
+  .color-swatch-list {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    flex-wrap: wrap;
+  }
+  .color-swatch-btn {
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    border: .16rem solid var(--ink);
+    cursor: pointer;
+    box-shadow: 0 .15rem 0 rgba(0,0,0,.2);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .color-swatch-btn:hover {
+    transform: scale(1.15);
+  }
+  .color-swatch-btn.active {
+    box-shadow: 0 0 0 .18rem #ff547b, 0 .2rem 0 rgba(0,0,0,.3);
+  }
+  .native-color-picker {
+    width: 2.4rem;
+    height: 2.4rem;
+    padding: 0;
+    border: .16rem solid var(--ink);
+    border-radius: .55rem;
+    cursor: pointer;
+    background: none;
+  }
   .custom-slider {
     width: 100%;
     accent-color: var(--pink);
@@ -542,21 +578,71 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
             <span class="sub-label">Độ cao bay so với tháp bánh:</span>
             <span id="spawn-height-val" class="val-badge">0.55x (Chuẩn)</span>
           </div>
-          <input type="range" id="spawn-height-slider" min="0.20" max="1.50" step="0.05" value="0.55" class="custom-slider">
+          <input type="range" id="spawn-height-slider" min="0.20" max="3.50" step="0.05" value="0.55" class="custom-slider">
           <div class="speed-pills">
             <label class="pill-label"><input type="radio" name="preset-height" value="0.25"><span>0.25x (Rất thấp)</span></label>
-            <label class="pill-label"><input type="radio" name="preset-height" value="0.40"><span>0.40x (Thấp)</span></label>
             <label class="pill-label"><input type="radio" name="preset-height" value="0.55" checked><span>0.55x (Chuẩn)</span></label>
-            <label class="pill-label"><input type="radio" name="preset-height" value="0.85"><span>0.85x (Cao)</span></label>
-            <label class="pill-label"><input type="radio" name="preset-height" value="1.25"><span>1.25x (Rất cao)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-height" value="1.00"><span>1.00x (Cao)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-height" value="1.80"><span>1.80x (Rất cao)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-height" value="2.50"><span>2.50x (Siêu cao)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-height" value="3.50"><span>3.50x (Tít trời)</span></label>
           </div>
         </div>
       </div>
 
-      <!-- MỤC 5: BÓNG BAY -->
+      <!-- MỤC 5: ĐỘ DUNG SAI THẢ BÁNH PERFECT -->
       <div class="settings-group">
         <div class="group-title">
-          <span>🎈 5. Khinh khí cầu đung đưa</span>
+          <span>🎯 5. Độ lệch cho phép thả Perfect (Dung sai)</span>
+        </div>
+        <div class="height-selector">
+          <div class="slider-row">
+            <span class="sub-label">Mức độ dễ đạt Perfect:</span>
+            <span id="perfect-tol-val" class="val-badge">1.0x (Chuẩn)</span>
+          </div>
+          <input type="range" id="perfect-tol-slider" min="0.5" max="5.0" step="0.1" value="1.0" class="custom-slider">
+          <div class="speed-pills">
+            <label class="pill-label"><input type="radio" name="preset-tol" value="0.5"><span>0.5x (Khắt khe)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-tol" value="1.0" checked><span>1.0x (Chuẩn gốc)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-tol" value="1.8"><span>1.8x (Dễ hơn)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-tol" value="2.8"><span>2.8x (Rất dễ)</span></label>
+            <label class="pill-label"><input type="radio" name="preset-tol" value="4.5"><span>4.5x (Siêu dễ)</span></label>
+          </div>
+        </div>
+      </div>
+
+      <!-- MỤC 6: HÌNH NỀN VÀ MÀU SẮC GAME -->
+      <div class="settings-group">
+        <div class="group-title">
+          <span>🎨 6. Hình nền & Màu sắc game</span>
+        </div>
+        <label class="toggle-row">
+          <input type="checkbox" id="enable-bg-check" class="custom-toggle" checked>
+          <div class="toggle-text">
+            <b>Bật hình nền sọc giấy dán tường mặc định (Hồng/Kem)</b>
+            <p>Bật: Nền sọc cổ điển • Tắt: Dùng màu nền đơn sắc bên dưới (tối ưu thị giác và bot nhận diện)</p>
+          </div>
+        </label>
+        <div id="custom-color-container" style="margin-top: .6rem;" hidden>
+          <span class="sub-label">Chọn màu nền đơn sắc (Mặc định: Xanh Quần Jean Denim):</span>
+          <div class="color-picker-row">
+            <input type="color" id="bg-color-picker" value="#2b4c7e" class="native-color-picker" title="Chọn mã màu tự do">
+            <div class="color-swatch-list">
+              <button type="button" class="color-swatch-btn" data-color="#2b4c7e" style="background: #2b4c7e;" title="Xanh Quần Jean (Denim Blue)"></button>
+              <button type="button" class="color-swatch-btn" data-color="#1e3a5f" style="background: #1e3a5f;" title="Xanh Navy Đậm"></button>
+              <button type="button" class="color-swatch-btn" data-color="#18181b" style="background: #18181b;" title="Đen OLED"></button>
+              <button type="button" class="color-swatch-btn" data-color="#374151" style="background: #374151;" title="Xám Than"></button>
+              <button type="button" class="color-swatch-btn" data-color="#fbe9df" style="background: #fbe9df;" title="Kem Sữa Gốc"></button>
+              <button type="button" class="color-swatch-btn" data-color="#ffffff" style="background: #ffffff;" title="Trắng Tinh"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MỤC 7: BÓNG BAY -->
+      <div class="settings-group">
+        <div class="group-title">
+          <span>🎈 7. Khinh khí cầu đung đưa</span>
         </div>
         <label class="toggle-row">
           <input type="checkbox" id="allow-balloons-check" class="custom-toggle" checked>
@@ -885,7 +971,10 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     baseSpeed: 1.0,
     cutOverhang: true,
     allowBalloons: true,
-    spawnHeightRatio: 0.55
+    spawnHeightRatio: 0.55,
+    enableBackground: true,
+    customBgColor: "#2b4c7e",
+    perfectTolMult: 1.0
   };
 
   const FLAVOR_NAMES = {
@@ -994,7 +1083,33 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       if (heightSlider) heightSlider.value = currHeight;
       if (heightValBadge) heightValBadge.textContent = formatHeightLabel(currHeight);
       heightPills.forEach(p => {
-        p.checked = Math.abs(parseFloat(p.value) - currHeight) < 0.03;
+        p.checked = Math.abs(parseFloat(p.value) - currHeight) < 0.04;
+      });
+
+      // Perfect Tolerance Sync
+      const tolSlider = document.getElementById("perfect-tol-slider");
+      const tolValBadge = document.getElementById("perfect-tol-val");
+      const tolPills = document.querySelectorAll('input[name="preset-tol"]');
+      const currTol = window.CUSTOM_SETTINGS.perfectTolMult !== undefined ? window.CUSTOM_SETTINGS.perfectTolMult : 1.0;
+      if (tolSlider) tolSlider.value = currTol;
+      if (tolValBadge) tolValBadge.textContent = formatTolLabel(currTol);
+      tolPills.forEach(p => {
+        p.checked = Math.abs(parseFloat(p.value) - currTol) < 0.06;
+      });
+
+      // Background Sync
+      const enableBgCheck = document.getElementById("enable-bg-check");
+      const colorContainer = document.getElementById("custom-color-container");
+      const bgColorPicker = document.getElementById("bg-color-picker");
+      const isBgOn = window.CUSTOM_SETTINGS.enableBackground !== false;
+      const currBgColor = window.CUSTOM_SETTINGS.customBgColor || "#2b4c7e";
+
+      if (enableBgCheck) enableBgCheck.checked = isBgOn;
+      if (colorContainer) colorContainer.hidden = isBgOn;
+      if (bgColorPicker) bgColorPicker.value = currBgColor;
+
+      document.querySelectorAll(".color-swatch-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-color").toLowerCase() === currBgColor.toLowerCase());
       });
     }
 
@@ -1002,21 +1117,61 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       const num = parseFloat(val);
       if (Math.abs(num - 0.55) < 0.03) return `${num.toFixed(2)}x (Chuẩn)`;
       if (num < 0.35) return `${num.toFixed(2)}x (Rất thấp)`;
-      if (num < 0.50) return `${num.toFixed(2)}x (Thấp)`;
-      if (num > 1.10) return `${num.toFixed(2)}x (Rất cao)`;
-      if (num > 0.65) return `${num.toFixed(2)}x (Cao)`;
+      if (num > 2.80) return `${num.toFixed(2)}x (Tít trời)`;
+      if (num > 2.00) return `${num.toFixed(2)}x (Siêu cao)`;
+      if (num > 1.30) return `${num.toFixed(2)}x (Rất cao)`;
+      if (num > 0.75) return `${num.toFixed(2)}x (Cao)`;
       return `${num.toFixed(2)}x`;
+    }
+
+    function formatTolLabel(val) {
+      const num = parseFloat(val);
+      if (Math.abs(num - 1.0) < 0.05) return `${num.toFixed(1)}x (Chuẩn gốc)`;
+      if (num < 0.75) return `${num.toFixed(1)}x (Khắt khe)`;
+      if (num > 3.5) return `${num.toFixed(1)}x (Siêu dễ)`;
+      if (num > 2.2) return `${num.toFixed(1)}x (Rất dễ)`;
+      if (num > 1.3) return `${num.toFixed(1)}x (Dễ hơn)`;
+      return `${num.toFixed(1)}x`;
+    }
+
+    function applyThemeColors() {
+      const cfg = window.CUSTOM_SETTINGS || {};
+      const isBgOn = cfg.enableBackground !== false;
+      const bgColor = cfg.customBgColor || "#2b4c7e";
+      const body = document.body;
+
+      if (isBgOn) {
+        body.style.background = "repeating-linear-gradient(90deg, #f8d9d3 0 2.1rem, #fdf2e8 2.1rem 4.2rem)";
+      } else {
+        body.style.background = bgColor;
+      }
+
+      if (window.gameScene) {
+        if (window.gameScene.cameras && window.gameScene.cameras.main) {
+          window.gameScene.cameras.main.setBackgroundColor(isBgOn ? "#fbe9df" : bgColor);
+        }
+        if (window.gameScene.sky) {
+          window.gameScene.sky.setVisible(isBgOn);
+        }
+      }
     }
 
     function readSettingsFromUI() {
       const heightSlider = document.getElementById("spawn-height-slider");
+      const tolSlider = document.getElementById("perfect-tol-slider");
+      const enableBgCheck = document.getElementById("enable-bg-check");
+      const bgColorPicker = document.getElementById("bg-color-picker");
+
       const cfg = {
         flavors: {},
         speedIncrease: speedIncreaseCheck.checked,
         baseSpeed: 1.0,
         cutOverhang: true,
         allowBalloons: allowBalloonsCheck.checked,
-        spawnHeightRatio: heightSlider ? parseFloat(heightSlider.value) : 0.55
+        spawnHeightRatio: heightSlider ? parseFloat(heightSlider.value) : 0.55,
+        enableBackground: enableBgCheck ? enableBgCheck.checked : true,
+        customBgColor: bgColorPicker ? bgColorPicker.value : "#2b4c7e",
+        perfectTolMult: tolSlider ? parseFloat(tolSlider.value) : 1.0
       };
 
       let selectedCount = 0;
@@ -1059,6 +1214,7 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     function applyAndSave() {
       window.CUSTOM_SETTINGS = readSettingsFromUI();
       saveSettings(window.CUSTOM_SETTINGS);
+      applyThemeColors();
       if (window.gameScene && window.gameScene.state === "title") {
         window.gameScene.build();
       }
@@ -1122,6 +1278,59 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       });
     });
 
+    // Perfect Tolerance Event Listeners
+    const tolSlider = document.getElementById("perfect-tol-slider");
+    const tolValBadge = document.getElementById("perfect-tol-val");
+    const tolPills = document.querySelectorAll('input[name="preset-tol"]');
+
+    if (tolSlider) {
+      tolSlider.addEventListener("input", (e) => {
+        const v = parseFloat(e.target.value);
+        if (tolValBadge) tolValBadge.textContent = formatTolLabel(v);
+        tolPills.forEach(p => {
+          p.checked = Math.abs(parseFloat(p.value) - v) < 0.06;
+        });
+      });
+    }
+
+    tolPills.forEach(p => {
+      p.addEventListener("change", (e) => {
+        if (e.target.checked) {
+          const v = parseFloat(e.target.value);
+          if (tolSlider) tolSlider.value = v;
+          if (tolValBadge) tolValBadge.textContent = formatTolLabel(v);
+        }
+      });
+    });
+
+    // Background Controls Event Listeners
+    const enableBgCheck = document.getElementById("enable-bg-check");
+    const colorContainer = document.getElementById("custom-color-container");
+    const bgColorPicker = document.getElementById("bg-color-picker");
+
+    if (enableBgCheck) {
+      enableBgCheck.addEventListener("change", (e) => {
+        if (colorContainer) colorContainer.hidden = e.target.checked;
+      });
+    }
+
+    if (bgColorPicker) {
+      bgColorPicker.addEventListener("input", (e) => {
+        document.querySelectorAll(".color-swatch-btn").forEach(btn => {
+          btn.classList.toggle("active", btn.getAttribute("data-color").toLowerCase() === e.target.value.toLowerCase());
+        });
+      });
+    }
+
+    document.querySelectorAll(".color-swatch-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const col = btn.getAttribute("data-color");
+        if (bgColorPicker) bgColorPicker.value = col;
+        document.querySelectorAll(".color-swatch-btn").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+      });
+    });
+
     selectAllBtn.addEventListener("click", () => {
       flavorGrid.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = true);
     });
@@ -1137,6 +1346,7 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       if (e.target === modal) closeModal();
     });
 
+    applyThemeColors();
     setTimeout(renderFlavors, 300);
   });
 })();
@@ -1277,6 +1487,11 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
   }
 
   function skyAt(p) {
+    const cfg = window.CUSTOM_SETTINGS;
+    if (cfg && cfg.enableBackground === false) {
+      const colStr = cfg.customBgColor || "#2b4c7e";
+      return parseInt(colStr.replace("#", "0x"), 16);
+    }
     for (let i = 1; i < SKY.length; i++) {
       if (p <= SKY[i][0]) return mix(SKY[i - 1][1], SKY[i][1], Math.max(0, (p - SKY[i - 1][0]) / (SKY[i][0] - SKY[i - 1][0])));
     }
@@ -1518,7 +1733,10 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     landingX(m) { return m.swing ? m.x + (m.momentum * m.vx * SWING_FALL) / 1000 : m.x; }
 
     perfectTol(s) {   // 3% of the width, plus a floor that makes tiny cakes forgiving; the floor fades out during the sugar rush
-      return Math.max(TIER_W * s * 0.03, 5 * Phaser.Math.Clamp(1 - (this.score - HARD_FROM) / 50, 0, 1));
+      const cfg = window.CUSTOM_SETTINGS || {};
+      const mult = (cfg.perfectTolMult !== undefined) ? cfg.perfectTolMult : 1.0;
+      const base = Math.max(TIER_W * s * 0.03, 5 * Phaser.Math.Clamp(1 - (this.score - HARD_FROM) / 50, 0, 1));
+      return base * mult;
     }
 
     tap() {
@@ -1847,7 +2065,12 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
 
     // ---- camera, sky, layout ----
 
-    focus() { return this.moving && this.moving.swing ? FOCUS_SWING : FOCUS; }
+    focus() {
+      const cfg = window.CUSTOM_SETTINGS || {};
+      const hRatio = cfg.spawnHeightRatio !== undefined ? cfg.spawnHeightRatio : 0.55;
+      const extra = Math.max(0, (hRatio - 0.55) * 0.06);
+      return (this.moving && this.moving.swing ? FOCUS_SWING : FOCUS) + extra;
+    }
 
     zoomTarget() {
       let z = zoomFor(this.top.s);
