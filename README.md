@@ -38,10 +38,14 @@ Access the in-game settings modal at any time via the **Settings (Gear Icon)** b
    - Automatic Trim (Classic): Any portion hanging over the edge is sliced off and falls away. The tower narrows as you climb, rewarding consecutive Perfect streaks.
    - 100% Fixed Width Mode: Cakes never shrink or get sliced. Land anywhere overlapping the previous tier and keep your full cake width for maximum tower-building comfort.
 
-4. **Balloon Cake Toggle**:
+4. **Custom Spawn Height (Elevation Offset)**:
+   - Configure how high new cakes fly above the current tower top:
+   - Slider & quick presets: 0.25x (Very Low / Near Top), 0.40x (Low), 0.55x (Standard Default), 0.85x (High), 1.25x (Very High / Distant).
+
+5. **Balloon Cake Toggle**:
    Toggle swinging pendulum balloon cakes (appearing from tier 40+) on or off.
 
-5. **Persistent Preferences**:
+6. **Persistent Preferences**:
    All customized settings are automatically saved to `localStorage` for future sessions.
 
 
@@ -88,8 +92,12 @@ Bạn có thể mở bảng cài đặt bất kỳ lúc nào bằng nút **Cài 
    - Tự cắt phần bị thả lệch (Cổ điển): Phần bánh thừa ngoài mép sẽ bị xén đứt rơi rụng. Bánh trên đỉnh tháp hẹp dần theo từng tầng (nếu đạt chuỗi Perfect 3 lần liên tiếp bánh sẽ nở to trở lại).
    - Giữ nguyên kích thước 100% (Thoải mái): Bánh không bao giờ bị cắt xén hay thu nhỏ; luôn giữ nguyên kích thước ban đầu giúp bạn thoải mái xây tháp bánh khổng lồ.
 
-4. **Bóng Bay Đung Đưa**:
+4. **Tuỳ Chỉnh Vị Trí / Độ Cao Xuất Hiện Của Bánh Mới**:
+   - Tự do tinh chỉnh khoảng cách bánh bay ngang cao lên hoặc thấp xuống so với đỉnh tháp bánh hiện tại.
+   - Hỗ trợ thanh trượt linh hoạt kèm các nút bấm nhanh: 0.25x (Rất thấp / Sát đỉnh tháp), 0.40x (Thấp), 0.55x (Chuẩn gốc), 0.85x (Cao), hoặc 1.25x (Rất cao).
+
+5. **Bóng Bay Đung Đưa**:
    Có thể bật hoặc tắt tính năng bánh treo khinh khí cầu đung đưa xuất hiện từ tầng 40 trở lên.
 
-5. **Tự Động Lưu Cấu Hình**:
+6. **Tự Động Lưu Cấu Hình**:
    Toàn bộ cấu hình cài đặt sẽ tự động lưu vào `localStorage` của trình duyệt và áp dụng cho các lần chơi tiếp theo.
