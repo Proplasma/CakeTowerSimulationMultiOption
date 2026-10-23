@@ -46,9 +46,9 @@ Access the in-game settings modal at any time via the **Settings (Gear Icon)** b
    - Customize how forgiving the game is when calculating a "Perfect" drop:
    - Slider (0.5x to 5.0x) & quick presets: 0.5x (Strict/Hardcore), 1.0x (Standard 3% margin), 1.8x (Forgiving), 2.8x (Generous), 4.5x (Ultra Easy Perfect).
 
-6. **Custom Solid Background & Denim Blue Jeans Mode**:
-   - Toggle the striped wallpaper background on or off.
-   - When off, play on a solid high-contrast background: defaults to **Denim Blue Jeans (`#2b4c7e`)**, with quick swatches (Navy, OLED Black, Slate Charcoal, Cream, Pure White) or a custom color picker. Perfect for visual clarity and computer-vision bot detection.
+6. **Custom Solid Background & Denim Blue Jeans Mode (Ultra-Clean)**:
+   - Toggle the background on or off.
+   - When off, **completely strips out all decorative elements** (bakery interior, counter, shelves, wall stripes, clouds, birds, hot air balloons, fade overlays). Only the cake stand, cake tiers, and UI controls remain, displayed on a pure solid background: defaults to **Denim Blue Jeans (`#2b4c7e`)**, with quick swatches (Navy, OLED Black, Slate Charcoal, Cream, Pure White) or a custom color picker. Perfect for zero-distraction play and 100% clean computer-vision bot detection.
 
 7. **Balloon Cake Toggle**:
    Toggle swinging pendulum balloon cakes (appearing from tier 40+) on or off.
@@ -108,9 +108,11 @@ Bạn có thể mở bảng cài đặt bất kỳ lúc nào bằng nút **Cài 
    - Tự do tăng hoặc giảm độ lệch chấp nhận được khi thả bánh để đạt chuỗi Perfect:
    - Thanh trượt từ `0.5x` đến `5.0x` kèm các mức: `0.5x` (Khắt khe / Hardcore), `1.0x` (Chuẩn gốc), `1.8x` (Dễ hơn), `2.8x` (Rất dễ), hoặc `4.5x` (Siêu dễ Perfect - tha hồ giữ combo).
 
-6. **Bật / Tắt Background & Chế Độ Màu Xanh Quần Jean**:
-   - Cho phép bật hoặc tắt hình nền sọc giấy dán tường mặc định.
-   - Khi tắt, game sẽ chuyển sang nền đơn sắc với màu mặc định là **Màu Xanh Quần Jean Denim (`#2b4c7e`)**, kèm bảng chọn mã màu tự do và các ô chọn màu nhanh (Xanh Navy, Đen OLED, Xám than, Trắng tinh, Kem sữa). Cực kỳ hữu ích cho việc quan sát tương phản cao và hỗ trợ bot thị giác máy tính nhận diện bánh dễ dàng 100%.
+6. **Bật / Tắt Background & Chế Độ Màu Xanh Quần Jean (Ẩn Sạch 100% Nền Trang Trí)**:
+   - Cho phép bật hoặc tắt hình nền trang trí của game.
+   - Khi tắt, **hệ thống sẽ ẩn sạch hoàn toàn mọi chi tiết trang trí nền**: từ không gian quán bánh bên dưới (tủ kính, quầy bar, kệ để đồ, cờ treo, hoa văn tường) cho tới bầu trời bên trên (mây bay, đàn chim, khinh khí cầu trang trí, dải chuyển màu mờ).
+   - **Chỉ giữ lại duy nhất:** Chân đế đĩa bánh, các tầng bánh của tháp, chiếc bánh đang bay và các nút điều khiển giao diện (điểm số, cài đặt, tạm dừng) trên một phông nền đơn sắc êm dịu.
+   - **Màu nền mặc định:** **Màu Xanh Quần Jean Denim (`#2b4c7e`)**, kèm bảng chọn mã màu tự do và các ô chọn màu nhanh (Xanh Navy, Đen OLED, Xám than, Trắng tinh, Kem sữa). Cực kỳ hữu ích cho việc tập trung tối đa và giúp Bot Auto ADB nhận diện chiếc bánh với độ tương phản tuyệt đối 100% mà không bao giờ bị nhiễu.
 
 7. **Bóng Bay Đung Đưa**:
    Có thể bật hoặc tắt tính năng bánh treo khinh khí cầu đung đưa xuất hiện từ tầng 40 trở lên.

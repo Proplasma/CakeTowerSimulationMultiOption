@@ -1146,13 +1146,8 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
         body.style.background = bgColor;
       }
 
-      if (window.gameScene) {
-        if (window.gameScene.cameras && window.gameScene.cameras.main) {
-          window.gameScene.cameras.main.setBackgroundColor(isBgOn ? "#fbe9df" : bgColor);
-        }
-        if (window.gameScene.sky) {
-          window.gameScene.sky.setVisible(isBgOn);
-        }
+      if (window.gameScene && window.gameScene.applyBackgroundMode) {
+        window.gameScene.applyBackgroundMode();
       }
     }
 
@@ -1533,7 +1528,8 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       // the whole landscape shop, shown behind the portrait one for the game-over photo: wider, so nothing has to repeat
       this.photoBg = this.add.image(0, 0, "bg-landscape").setOrigin(0.5, COUNTER).setDepth(-21).setVisible(false);
       this.wallTiles = [];
-      this.add.image(0, 0, "stand").setOrigin(0.5, 1).setScale(STAND_SCALE).setDepth(-1);
+      this.stand = this.add.image(0, 0, "stand").setOrigin(0.5, 1).setScale(STAND_SCALE).setDepth(-1);
+      this.applyBackgroundMode();
 
       this.best = store.best;
       this.state = "title";
@@ -1631,10 +1627,36 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       this.nightCount = 0;
       this.moonShown = this.planetShown = false;
       this.skyP = 0;
+      this.applyBackgroundMode();
       if (this.revealTween) this.revealTween.remove();
       this.reveal = this.revealTween = null;
       this.cardShown = false;
       if (this.photoBg) this.endPhoto();
+    }
+
+    applyBackgroundMode() {
+      const cfg = window.CUSTOM_SETTINGS || {};
+      const isBgOn = cfg.enableBackground !== false;
+      const bgColor = cfg.customBgColor || "#2b4c7e";
+
+      // Ẩn sạch hoàn toàn mọi đồ trang trí nền (quán bánh, kệ bánh, tường, rèm che, bóng mờ)
+      if (this.bg) this.bg.setVisible(isBgOn);
+      if (this.fade) this.fade.setVisible(isBgOn);
+      if (this.sky) this.sky.setVisible(isBgOn);
+      if (this.photoBg) this.photoBg.setVisible(false);
+
+      // Ẩn/xoá sạch toàn bộ mây, chim, bóng bay trang trí nền, hành tinh, sao
+      if (!isBgOn && this.decor) {
+        for (const d of this.decor) {
+          if (this.tweens) this.tweens.killTweensOf(d);
+          d.destroy();
+        }
+        this.decor = [];
+      }
+
+      if (this.cameras && this.cameras.main) {
+        this.cameras.main.setBackgroundColor(isBgOn ? "#fbe9df" : bgColor);
+      }
     }
 
     dropMoving() {
@@ -2108,7 +2130,13 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
         const fb = Math.min(fy + fh, (r.bottom - this.camY) * z + H / 2);   // never below the picture's bottom edge
         hud.frame({ x: fcx - fw / 2, y: fy, w: fw, h: fb - fy }, Phaser.Math.Clamp(t / 0.3, 0, 1));
         this.photoBg.setVisible(this.portrait);
-        this.bg.setAlpha(this.portrait ? 1 - Phaser.Math.Clamp(t / 0.35, 0, 1) : 1);
+        const cfg = window.CUSTOM_SETTINGS;
+        if (!cfg || cfg.enableBackground !== false) {
+          this.bg.setAlpha(this.portrait ? 1 - Phaser.Math.Clamp(t / 0.35, 0, 1) : 1);
+        } else {
+          this.bg.setVisible(false);
+          this.fade.setVisible(false);
+        }
         const c = skyAt(L(this.skyP, this.tierAt(this.shopTop), t));
         if (c !== this.fadeColor) this.paintFade(c);
         this.paintSky();
@@ -2149,6 +2177,8 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     }
 
     addDecor(y, halfW, gap) {
+      const cfg = window.CUSTOM_SETTINGS;
+      if (cfg && cfg.enableBackground === false) return;
       const phase = phaseOf(this.score);
       let key = pick(DECOR[phase]);
       if (phase === "night") {
@@ -2227,7 +2257,8 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       this.bg.setTexture(key).setScale(Math.max(W / this.baseZoom / src.width, H / this.baseZoom / src.height));
       const bw = this.bg.displayWidth, bh = this.bg.displayHeight;
       this.shopTop = -COUNTER * bh;
-      this.fade.setPosition(0, this.shopTop).setDisplaySize(1e5, bh * 0.08);   // wide enough for any wall extension
+      this.fade.setPosition(0, this.shopTop).setDisplaySize(1e5, bh * 0.08);
+      this.applyBackgroundMode();   // wide enough for any wall extension
       this.photoBg.setScale(bh / this.textures.get("bg-landscape").getSourceImage().height);
       // how far the shop picture can be magnified before it goes soft: texture pixels per screen pixel, with some slack
       this.shopCap = Phaser.Math.Clamp((src.width / (bw * this.baseZoom)) * 1.6, 1, 2.5);
