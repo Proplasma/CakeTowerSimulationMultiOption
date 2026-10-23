@@ -1,5 +1,7 @@
 # 🍰 Cake Tower - Phiên Bản Tuỳ Chỉnh Độc Lập (Custom All-in-One Edition)
 
+> **Tham khảo mã nguồn từ:** [https://github.com/GianneAngely/cake-tower](https://github.com/GianneAngely/cake-tower)
+
 Phiên bản game **Cake Tower (Thả Bánh Xếp Tháp)** được tái đóng gói và nâng cấp toàn diện thành **1 file HTML duy nhất**, tích hợp sẵn toàn bộ Engine Phaser 3, âm thanh Web Audio Live Synthesizer, font chữ Fredoka, và hình ảnh độ nét cao dưới dạng Base64 Data URI.
 
 ## 🚀 Cách Chơi Ngay Lập Tức
@@ -15,14 +17,14 @@ Bạn có thể nhấn vào nút **⚙️ Cài Đặt Tuỳ Chỉnh** trên màn
 
 ### 1. Cho phép các loại bánh nào được xuất hiện trong game
 - Hỗ trợ đầy đủ **8 hương vị bánh đặc trưng** với hình ảnh minh hoạ trực quan:
-  - 🍓 **Dâu Hồng** (Pink)
-  - 🌿 **Bạc Hà** (Mint)
-  - 💜 **Oải Hương** (Lavender)
-  - 🍋 **Chanh Vàng** (Yellow)
-  - 🍫 **Sô-cô-la** (Chocolate)
-  - 🍑 **Đào Kem** (Peach)
-  - 🌊 **Việt Quất** (Blue)
-  - 🍦 **Vani Sữa** (Vanilla)
+  - **Dâu Hồng** (Pink)
+  - **Bạc Hà** (Mint)
+  - **Oải Hương** (Lavender)
+  - **Chanh Vàng** (Yellow)
+  - **Sô-cô-la** (Chocolate)
+  - **Đào Kem** (Peach)
+  - **Việt Quất** (Blue)
+  - **Vani Sữa** (Vanilla)
 - Bạn có thể **bật/tắt bất kỳ loại bánh nào**, hoặc dùng nút **"Chọn hết"** / **"Ngẫu nhiên 1"** để thử thách bản thân với chỉ duy nhất 1 loại bánh yêu thích.
 
 ### 2. Tuỳ chọn tốc độ bay ngang của bánh
