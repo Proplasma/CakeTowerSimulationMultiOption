@@ -68,7 +68,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
 @keyframes pop { 0% { opacity: 0; margin-top: .6rem; scale: .6; } 20% { opacity: 1; scale: 1.08; } 100% { opacity: 0; margin-top: -2.4rem; scale: 1; } }
 
 
-  /* --- TUỲ CHỈNH CSS CHO SETTINGS MODAL & COZY BUTTONS --- */
   #settings-btn {
     pointer-events: auto;
   }
@@ -181,7 +180,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
     background: #ffe3ea;
   }
 
-  /* Flavor selection grid */
   .flavor-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(6.8rem, 1fr));
@@ -232,7 +230,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
     line-height: 1.1;
   }
 
-  /* Toggle Row */
   .toggle-row {
     display: flex;
     align-items: flex-start;
@@ -283,7 +280,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
     line-height: 1.25;
   }
 
-  /* Speed selector pills */
   .speed-selector {
     margin-top: .9rem;
     padding-top: .7rem;
@@ -327,7 +323,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
     box-shadow: 0 .15rem 0 rgba(122, 74, 46, .3);
   }
 
-  /* Mode selection cards */
   .cut-options {
     display: flex;
     flex-direction: column;
@@ -368,7 +363,6 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
     line-height: 1.25;
   }
 
-  /* Modal Footer */
   .modal-footer {
     padding: .9rem 1.4rem;
     border-top: .18rem solid rgba(122, 74, 46, .15);
@@ -505,7 +499,7 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #fbe9df; tou
             <input type="radio" name="cut-mode" value="fixed">
             <div class="mode-content">
               <b>🛡️ Giữ nguyên kích thước 100% (Thoải Mái)</b>
-              <p>Bánh không bị cắt gọt hay thu nhỏ. Luôn giữ nguyên 100% kích thước từ đầu đến cuối ván!</p>
+              <p>Bánh không bị cắt gọt hay thu nhỏ. Luôn giữ nguyên kích thước từ đầu đến cuối ván!</p>
             </div>
           </label>
         </div>
@@ -896,7 +890,6 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     const selectAllBtn = document.getElementById("select-all-flavors");
     const selectRandomBtn = document.getElementById("select-random-flavor");
 
-    // Render 8 flavor cards with preview images from CAKE_ASSETS
     function renderFlavors() {
       flavorGrid.innerHTML = "";
       const allFlavors = ["pink", "mint", "lavender", "yellow", "chocolate", "peach", "blue", "vanilla"];
@@ -924,30 +917,25 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     }
 
     function syncUIFromSettings() {
-      // Flavors
       const checkboxes = flavorGrid.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(cb => {
         const f = cb.getAttribute("data-flavor");
         cb.checked = window.CUSTOM_SETTINGS.flavors[f] !== false;
       });
 
-      // Speed Increase toggle
       speedIncreaseCheck.checked = !!window.CUSTOM_SETTINGS.speedIncrease;
 
-      // Base speed radios
       const speedRadios = document.querySelectorAll('input[name="base-speed"]');
       speedRadios.forEach(r => {
         r.checked = Math.abs(parseFloat(r.value) - window.CUSTOM_SETTINGS.baseSpeed) < 0.05;
       });
 
-      // Cut mode radios
       const cutRadios = document.querySelectorAll('input[name="cut-mode"]');
       cutRadios.forEach(r => {
         if (r.value === "cut") r.checked = !!window.CUSTOM_SETTINGS.cutOverhang;
         if (r.value === "fixed") r.checked = !window.CUSTOM_SETTINGS.cutOverhang;
       });
 
-      // Balloons
       allowBalloonsCheck.checked = window.CUSTOM_SETTINGS.allowBalloons !== false;
     }
 
@@ -960,7 +948,6 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
         allowBalloons: allowBalloonsCheck.checked
       };
 
-      // Read flavors
       let selectedCount = 0;
       const checkboxes = flavorGrid.querySelectorAll('input[type="checkbox"]');
       checkboxes.forEach(cb => {
@@ -969,19 +956,16 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
         if (cb.checked) selectedCount++;
       });
 
-      // Guard: must have at least 1 flavor
       if (selectedCount === 0) {
-        cfg.flavors["pink"] = true; // default fallback
+        cfg.flavors["pink"] = true;
         const pinkCb = flavorGrid.querySelector('input[data-flavor="pink"]');
         if (pinkCb) pinkCb.checked = true;
         alert("Bạn phải chọn ít nhất 1 loại bánh! Hệ thống đã tự động bật lại bánh Dâu Hồng.");
       }
 
-      // Read base speed
       const checkedSpeed = document.querySelector('input[name="base-speed"]:checked');
       if (checkedSpeed) cfg.baseSpeed = parseFloat(checkedSpeed.value);
 
-      // Read cut mode
       const checkedCut = document.querySelector('input[name="cut-mode"]:checked');
       if (checkedCut) cfg.cutOverhang = (checkedCut.value === "cut");
 
@@ -989,7 +973,6 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     }
 
     function openModal() {
-      // Pause game if playing
       if (window.gameScene && window.gameScene.state === "play") {
         window.gameScene.togglePause();
       }
@@ -1005,14 +988,12 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     function applyAndSave() {
       window.CUSTOM_SETTINGS = readSettingsFromUI();
       saveSettings(window.CUSTOM_SETTINGS);
-      // If we are in title state, refresh top tier to reflect selected flavor
       if (window.gameScene && window.gameScene.state === "title") {
         window.gameScene.build();
       }
       closeModal();
     }
 
-    // Event Listeners
     settingsBtn.addEventListener("click", (e) => {
       e.currentTarget.blur();
       openModal();
@@ -1026,7 +1007,6 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
     }
 
     closeBtn.addEventListener("click", closeModal);
-
     saveBtn.addEventListener("click", applyAndSave);
 
     restartBtn.addEventListener("click", () => {
@@ -1058,12 +1038,10 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       rand.checked = true;
     });
 
-    // Close on backdrop click
     modal.addEventListener("click", (e) => {
       if (e.target === modal) closeModal();
     });
 
-    // Render initial flavors once assets are loaded
     setTimeout(renderFlavors, 300);
   });
 })();
@@ -1079,7 +1057,7 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
   const FLAVORS = ["pink", "mint", "lavender", "yellow", "chocolate", "peach", "blue", "vanilla"];
   const TEX = { tierW: 800, tierH: 644, standW: 919, standH: 465 };
   const ANCHOR = { top: 0.232, bottom: 0.712, stand: 0.28 };        // rim centers, from art/sprites/anchors.json
-  const TIER_W = 400;                                                // world width of a full-size tier
+  const TIER_W = 280;                                                // Bánh nhỏ hơn 30% (280px thay vì 400px)
   const K = TIER_W / TEX.tierW;                                      // texture px to world units at full size
   const HIT = 0.9;                                                   // share of the sprite width that counts; the piped borders stick out
   const STAND_SCALE = (TIER_W * 1.15) / TEX.standW;
@@ -1921,7 +1899,7 @@ window.CAKE_ASSETS = {"bg-landscape": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ
       const portrait = H >= W;
       this.portrait = portrait;
       cam.setSize(W, H);
-      this.baseZoom = (portrait ? 0.48 * W : Math.min(0.18 * W, 0.32 * H)) / TIER_W;
+      this.baseZoom = (portrait ? 0.48 * W : Math.min(0.18 * W, 0.32 * H)) / 400; // Giữ nguyên camera zoom chuẩn để bánh nhỏ hơn 30% trên màn hình
       const key = portrait ? "bg-portrait" : "bg-landscape";
       const src = this.textures.get(key).getSourceImage();
       this.bg.setTexture(key).setScale(Math.max(W / this.baseZoom / src.width, H / this.baseZoom / src.height));
